@@ -10,4 +10,4 @@ set(SOURCES
   ${MY_SOURCE_FILES}
 )
 
-add_executable(main ${SOURCES})
+add_executable(AlgorithmCompiller ${SOURCES})
