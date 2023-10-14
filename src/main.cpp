@@ -1,17 +1,17 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <codecvt>
 #include "./modules/Lexer/Lexer.hpp"
 
 int main() 
 {
-  std::string fileName, line;
+  std::string line, fileName;
   Lexer::Lexer lex;
 
   std::cout << "Enter the address of the file to compile: " << std::endl; //Disk:/source/глав.alg
 
   std::getline(std::cin, fileName);
-  std::cout << fileName << std::endl;
   
   std::ifstream file (fileName, std::ios::in);
 
