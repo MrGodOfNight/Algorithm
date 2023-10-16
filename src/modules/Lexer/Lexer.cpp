@@ -6,14 +6,31 @@ namespace Lexer
 {
   void Lexer::readLine(std::string line)
   {
-    //NOTE: This is for testing!
-    std::ofstream out;
-    out.open("main.alg", std::ios::app);
+    std::string delimiters = "().{}[]+-*/%=<>!&|,;:\"'\t\\ ";
+
+    std::ofstream out("main.alg", std::ios::app);
     if (out.is_open())
     {
-      out << line << std::endl;
+      size_t startPos = 0;
+      size_t endPos = line.find_first_of(delimiters, startPos);
+
+      while (endPos != std::string::npos)
+      {
+        std::string token = line.substr(startPos, endPos - startPos);
+        out << token << std::endl;
+
+        // Сохранение разделителя как отдельного токена
+        std::string delimiterToken = line.substr(endPos, 1);
+        out << delimiterToken << std::endl;
+
+        startPos = endPos + 1;
+        endPos = line.find_first_of(delimiters, startPos);
+      }
+
+      // Обработка последнего токена после последнего разделителя
+      std::string lastToken = line.substr(startPos);
+      out << lastToken << std::endl;
     }
     out.close();
-    //TODO: read a string and parse it into tokens.
   }
 } // namespace Lexer
