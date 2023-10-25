@@ -1,12 +1,12 @@
-#include "Lexer.hpp"
 #include <string>
 #include <fstream>
+#include "Lexer.hpp"
 
 namespace Lexer
 {
   void Lexer::readLine(std::string line)
   {
-    std::string delimiters = "().{}[]+-*/%=<>!&|,;:\"'\t\\ ";
+    std::string delimiters = "().{}[]+-*/%=<>!&|,;:\"'\\ ";
 
     std::ofstream out("main.alg", std::ios::app);
     if (out.is_open())
