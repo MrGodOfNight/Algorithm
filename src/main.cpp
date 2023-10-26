@@ -1,10 +1,18 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#ifdef _WIN32
+#include <Windows.h>
+#endif
 #include "./modules/Lexer/Lexer.hpp"
 
 int main() 
 {
+  #ifdef _WIN32
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+  #endif
+  std::locale::global(std::locale(""));
   //TODO: Реализовать поддержку файлов на русском языке + поддержку русского языка в консоли на всех платформах.
   std::string line, fileName;
   Lexer::Lexer lex;

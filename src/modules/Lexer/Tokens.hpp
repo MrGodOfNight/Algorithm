@@ -2,6 +2,10 @@
 #include <string>
 #include <regex>
 
+
+#define REG std::regex
+  
+
 namespace Lexer
 {
   //TODO: Доделать и продумать работу обычных типов в классе Types.
@@ -21,9 +25,17 @@ namespace Lexer
   class Types : public Tokens
   {
     private:
-    std::map<std::string, std::regex> types =
+    std::map<std::string, REG> types =
     {
-      {"SPACE", std::regex(" |\t|\r|\n")}
+      {"SPACE", REG(" |\t|\r|\n")},
+      {"ENDLINE", REG(";")},
+      {"OPEN_PARENTHESES", REG("(")},
+      {"CLOSE_PARENTHESES", REG(")")},
+      {"OPEN_CODE_BLOCK", REG("{")},
+      {"CLOSE_CODE_BLOCK", REG("}")},
+      {"COMM", REG("//(.*)")},
+      {"MULTI_COMM_START", REG("/*")},
+      {"MULTI_COMM_END", REG("*/")}
     };
   };
 
