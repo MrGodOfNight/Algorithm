@@ -12,7 +12,6 @@ int main()
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
   #endif
-  std::locale::global(std::locale(""));
   //TODO: Реализовать поддержку файлов на русском языке + поддержку русского языка в консоли на всех платформах.
   std::string line, fileName;
   Lexer::Lexer lex;

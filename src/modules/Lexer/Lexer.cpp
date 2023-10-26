@@ -6,7 +6,7 @@ namespace Lexer
 {
   void Lexer::readLine(std::string line)
   {
-    std::string delimiters = "().{}[]+-*/%=<>!&|,;:\"'\\ ";
+    std::string delimiters = "().{}[]+-%=<>!&|,;:\"\'\\ |\t|\r|\n";
 
     std::ofstream out("main.alg", std::ios::app);
     if (out.is_open())
@@ -16,20 +16,20 @@ namespace Lexer
 
       while (endPos != std::string::npos)
       {
-        std::string token = line.substr(startPos, endPos - startPos);
-        out << token << std::endl;
+        std::string lexem = line.substr(startPos, endPos - startPos);
+        out << lexem << std::endl;
 
         // Сохранение разделителя как отдельного токена
-        std::string delimiterToken = line.substr(endPos, 1);
-        out << delimiterToken << std::endl;
+        std::string delimiterLexem = line.substr(endPos, 1);
+        out << delimiterLexem << std::endl;
 
         startPos = endPos + 1;
         endPos = line.find_first_of(delimiters, startPos);
       }
 
       // Обработка последнего токена после последнего разделителя
-      std::string lastToken = line.substr(startPos);
-      out << lastToken << std::endl;
+      std::string lastLexem = line.substr(startPos);
+      out << lastLexem << std::endl;
     }
     out.close();
   }
